@@ -1,0 +1,15 @@
+.item {
+    border: 1px solid transparent !important;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 2px;
+    background-color: gainsboro;
+    display: block;
+    justify-content: space-between;
+    box-shadow: 5px 5px 5px rgb(20, 20, 20, 0.5);
+}
+
+.menu {
+    display: flex;
+    justify-content: end;
+}
