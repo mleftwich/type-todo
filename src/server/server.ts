@@ -18,6 +18,7 @@ export function makeServer() {
       }),
       users: RestSerializer.extend({
         include: ["todo"],
+        serializeIds: "always",
         embed: true,
       }),
     },
@@ -43,10 +44,9 @@ export function makeServer() {
       }),
       todo: Factory.extend({
         name() {
-          return chance.sentence({words: 10});
+          return chance.sentence({ words: 10 });
         },
-        isComplete: chance.bool({ likelihood: 50}),
-        
+        isComplete: chance.bool({ likelihood: 50 }),
       }),
     },
     seeds(server) {
@@ -54,6 +54,7 @@ export function makeServer() {
       for (const user of users) {
         server.createList("todo", chance.integer({ min: 0, max: 1 }), {
           user: user,
+
         } as any);
       }
     },

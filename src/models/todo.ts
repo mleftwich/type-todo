@@ -7,7 +7,7 @@ class Todo {
     user: string;
     constructor(name: string, user: string, isComplete: boolean) {
         this.name = name;
-        this.id = chance.character({numeric: true})
+        this.id = chance.guid()
         this.isComplete = isComplete
         this.user = user;
     }
