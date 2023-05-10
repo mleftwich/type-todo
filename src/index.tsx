@@ -19,7 +19,7 @@ const theme = createTheme({
       main: amber[400],
     },
     secondary: {
-      main: grey[800],
+      main: grey[100],
     },
   },
 });

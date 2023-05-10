@@ -17,12 +17,13 @@
     text-shadow: black 5px 5px 3px;
 }
 
-.list {
+.section {
     border: 1px solid rgb(109, 109, 109);
     border-radius: 5px;
     display: inline;
     padding: 5px;
-    width: 45%
+    width: 45%;
+    height: 80%;
 }
 
 

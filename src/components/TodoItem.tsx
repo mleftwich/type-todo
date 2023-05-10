@@ -1,8 +1,10 @@
+import React, { useContext } from "react";
+import { TodosContext } from "../store/TodoContext";
+
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import { IconButton } from "@mui/material";
-import React, { useContext } from "react";
-import { TodosContext } from "../store/TodoContext";
+
 
 import classes from "./TodoItem.module.css";
 
@@ -15,6 +17,14 @@ const TodoItem: React.FC<{
 const todosCtx = useContext(TodosContext);
   return (
     <div key={props.id} className={classes.item}>
+         <div className={classes.menu}>
+          <IconButton aria-label="edit task">
+            <EditNoteIcon />
+          </IconButton>
+          <IconButton aria-label="delete task" onClick={() => todosCtx.removeTodo(props.id)}>
+            <DeleteForeverIcon />
+          </IconButton>
+        </div>
       <p>
         <b>Task:</b> {props.name}
       </p>
@@ -23,15 +33,9 @@ const todosCtx = useContext(TodosContext);
       </p>
       <p>
         <b>Complete:</b> {props.isComplete.toString()}
-        <div className={classes.menu}>
-          <IconButton aria-label="edit task">
-            <EditNoteIcon />
-          </IconButton>
-          <IconButton aria-label="delete task" onClick={() => todosCtx.removeTodo(props.id)}>
-            <DeleteForeverIcon />
-          </IconButton>
-        </div>
-      </p>
+        </p>
+       
+      
     </div>
   );
 };

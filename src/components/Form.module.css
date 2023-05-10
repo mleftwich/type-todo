@@ -1,0 +1,39 @@
+.textfield {
+    background-color: white;
+    border-radius: 5px;
+}
+
+
+  
+.labels {
+    color: #ffca28;
+    font-family: monospace;
+    text-align: end;
+    font-size: large;
+    text-shadow: black 5px 5px 3px;
+    padding: 1.5rem;
+}
+.flex {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    margin: auto;
+  }
+  .button {
+margin-top: 2px;
+ }
+
+  .form {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgb(109, 109, 109);
+  }
+
+  .success {
+    display: flex;
+    justify-content: end;
+  }
+
+  .select-wrapper .select__option:hover {
+    background-color: red;
+    opacity: 0.8;
+  }

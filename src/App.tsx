@@ -1,35 +1,44 @@
-import axios from "axios";
 import { useContext, useEffect } from "react";
-import classes from "./App.module.css";
-import TodoList from "./components/TodoList";
 import { TodosContext } from "./store/TodoContext";
+
+import classes from "./App.module.css";
+
+import Form from "./components/Form";
+import TodoList from "./components/TodoList";
+
 function App() {
   const todosCtx = useContext(TodosContext);
-  //// GET ALL THE TODOS FROM THE API AND SET INITIAL STATE
-  async function getTodos() {
-    const req = await axios.get("api/todos");
-    const todos = req.data.todos;
 
-    for (let index = 0; index < todos.length; index++) {
-      todosCtx.setInitialState(
-        todos[index].name,
-        todos[index].user,
-        todos[index].isComplete
-      );
-    }
-  }
-
+  //// PERFORM API CALLS ON MOUNT - GET USERS AND TODOS
   useEffect(() => {
-    getTodos();
+    todosCtx.getTodos();
+    todosCtx.getUsers();
   }, []);
+
+  const users = todosCtx.users;
 
   return (
     <>
+    {/* ALL TODOS */}
       <div className={classes.titleBox}>
         <h1 className={classes.title}>todos.</h1>
       </div>
-      <div className={classes.alltodos}>
-        <TodoList items={todosCtx.items} />
+      <div className={classes.flex}>
+        <div className={classes.list}>
+          <div className={classes.alltodos}>
+            <TodoList items={todosCtx.items} />
+          </div>
+        </div>
+
+
+      {/* ADD TODO */}
+        <div className={classes.form}>
+          <div className={classes.add}>
+            <b className={classes.labels}>add todo</b>
+          </div>
+          <Form users={users} />
+        </div>
+
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 body {
   background-color: rgb(44, 44, 44);
-  font-size: small
+  font-size: small;
 }
 
 .title {
@@ -12,7 +12,7 @@ body {
 }
 
 .titleBox {
-background-color: #ffca28;
+  background-color: #ffca28;
   border: 1px solid;
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgb(24, 24, 24);
@@ -22,7 +22,43 @@ background-color: #ffca28;
 }
 
 .alltodos {
-    display: flex;
-    padding: 5px;
+  display: flex;
+  padding: 5px;
+  justify-content: space-evenly;
+
 }
 
+.flex {
+  display: flex;
+}
+
+.list {
+  border-right: 1px solid rgb(109, 109, 109);
+  border-bottom: 1px solid rgb(109, 109, 109);
+  border-radius: 5px;
+  display: inline;
+  padding: 5px;
+  width: 45%;
+
+}
+
+.form {
+  display: inline;
+  padding: 5px;
+  width: 45%;
+  margin-left: 1rem;
+}
+
+.labels {
+  color: #ffca28;
+  font-family: monospace;
+  text-align: center;
+  font-size: large;
+  text-shadow: black 5px 5px 3px;
+}
+
+.add {
+  display: flex;
+  justify-content: center;
+  padding: 1.8rem;
+}
