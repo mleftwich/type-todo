@@ -16,7 +16,7 @@ function App() {
   }, []);
 
   const users = todosCtx.users;
-
+  
   return (
     <>
     {/* ALL TODOS */}
@@ -36,7 +36,7 @@ function App() {
           <div className={classes.add}>
             <b className={classes.labels}>add todo</b>
           </div>
-          <Form users={users} />
+          <Form users={users} handleModal={() => {}}/>
         </div>
 
       </div>

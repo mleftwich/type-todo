@@ -5,7 +5,7 @@ class Todo {
     name: string;
     isComplete: boolean;
     user: string;
-    constructor(name: string, user: string, isComplete: boolean) {
+    constructor(name: string, user: string, isComplete: boolean, id?: string) {
         this.name = name;
         this.id = chance.guid()
         this.isComplete = isComplete

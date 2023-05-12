@@ -19,13 +19,13 @@ body {
   width: 50%;
   margin: auto;
   margin-top: 20pt;
+
 }
 
 .alltodos {
   display: flex;
   padding: 5px;
   justify-content: space-evenly;
-
 }
 
 .flex {
