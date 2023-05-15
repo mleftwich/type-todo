@@ -19,12 +19,12 @@ type Props = {
 };
 
 const Form: React.FC<Props> = ({
-  taskname: taskname,
-  isComplete: isComplete,
-  edit: edit,
-  handleModal: handleModal,
-  id: id,
-  users: users,
+  taskname,
+  isComplete,
+  edit,
+  handleModal,
+  id,
+  users,
 }) => {
   const todosCtx = useContext(TodosContext);
   const [success, setSuccess] = useState(false);
@@ -34,23 +34,22 @@ const Form: React.FC<Props> = ({
   if (edit) {
     const userOptions = {
       value: users,
-      label: users
-    }
-    userArray.push(userOptions);
-    } else {
-  for (let index = 0; index < users!.length; index++) {
-    const userOptions = {
-      value: users![index].id,
-      label:
-        users![index].firstName +
-        " " +
-        users![index].lastName +
-        " - ID: " +
-        users![index].id,
+      label: users,
     };
     userArray.push(userOptions);
-  }
-   
+  } else {
+    for (let index = 0; index < users!.length; index++) {
+      const userOptions = {
+        value: users![index].id,
+        label:
+          users![index].firstName +
+          " " +
+          users![index].lastName +
+          " - ID: " +
+          users![index].id,
+      };
+      userArray.push(userOptions);
+    }
   }
 
   // isComplete status options
@@ -86,7 +85,7 @@ const Form: React.FC<Props> = ({
       e.preventDefault();
       let enteredText = todoInputRef.current!.value;
       if (enteredText!.trim().length === 0) {
-        alert("Please enter a task");
+        return alert("Please enter a task");
       }
       todosCtx.editTodo(id!, enteredText, newUser!, completed!);
       setSuccess(true);
@@ -97,7 +96,7 @@ const Form: React.FC<Props> = ({
       e.preventDefault();
       let enteredText = todoInputRef.current!.value;
       if (enteredText!.trim().length === 0) {
-        alert("Please enter a task");
+        return alert("Please enter a task");
       }
       todosCtx.addTodo(enteredText, newUser!, completed!);
       setSuccess(true);
@@ -117,21 +116,21 @@ const Form: React.FC<Props> = ({
                 <CloseIcon color="primary" />
               </IconButton>
             )}
-           
-              <Select
-                options={userArray}
-                placeholder="- user -"
-                autoFocus={true}
-                onChange={handleSelectUser}
-                styles={{
-                  control: (baseStyles, state) => ({
-                    ...baseStyles,
-                    border: 0,
-                    boxShadow: "none",
-                  }),
-                }}
-              />
-            
+
+            <Select
+              options={userArray}
+              placeholder="- user -"
+              autoFocus={true}
+              onChange={handleSelectUser}
+              styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  border: 0,
+                  boxShadow: "none",
+                }),
+              }}
+            />
+
             <Select
               options={options}
               placeholder="- status -"
@@ -149,6 +148,7 @@ const Form: React.FC<Props> = ({
             variant="filled"
             placeholder={taskname ? taskname : "- add task here -"}
             inputRef={todoInputRef}
+            inputProps={{ className: classes.textfield }}
           >
             {taskname}
           </TextField>

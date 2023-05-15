@@ -26,6 +26,7 @@ body {
   display: flex;
   padding: 5px;
   justify-content: space-evenly;
+  margin-left: 1rem;
 }
 
 .flex {
@@ -39,11 +40,11 @@ body {
   display: inline;
   padding: 5px;
   width: 45%;
-
+  margin-left: 1 rem;
 }
 
 .form {
-  display: inline;
+  display: inline-block;
   padding: 5px;
   width: 45%;
   margin-left: 1rem;

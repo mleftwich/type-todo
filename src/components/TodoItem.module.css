@@ -12,5 +12,13 @@
 
 .menu {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+
+    z-index: -1;
+}
+
+.modal {
+display: flex;
+justify-content: center;
+align-items: center;
 }

@@ -1,14 +1,13 @@
 .textfield {
     background-color: white;
     border-radius: 5px;
+    opacity: 100%;
 }
 
-
-  
 .labels {
     color: #ffca28;
     font-family: monospace;
-    text-align: end;
+    text-align: flex-end;
     font-size: large;
     text-shadow: black 5px 5px 3px;
     padding: 1.5rem;
@@ -30,10 +29,10 @@ margin-top: 2px;
 
   .success {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
 
-  .select-wrapper .select__option:hover {
-    background-color: red;
-    opacity: 0.8;
-  }
+.textfield {
+  background-color: rgb(255, 255, 255);
+  opacity: 100;
+}
