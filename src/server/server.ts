@@ -54,7 +54,6 @@ export function makeServer() {
       for (const user of users) {
         server.createList("todo", chance.integer({ min: 0, max: 1 }), {
           user: user,
-
         } as any);
       }
     },
@@ -73,29 +72,10 @@ export function makeServer() {
 
       // todo apis
       this.get("/todos", (schema: any, request) => {
-        const active = request.params.active;
         return schema.todos.all();
       });
-      // this.get("/todo/:id", (schema: any, request) => {
-      //   const todoId = request.params.id;
-      //   const todo = schema.todos.find(todoId);
-      //   return {
-      //     todo: todo,
-      //   };
-      // });
-      // this.delete("/todo/:id/delete", (schema: any, request) => {
-      //   const todoId = request.params.id;
-      //   schema.todos.find(todoId).destroy();
-      //   return { success: true };
-      // });
-      // this.post("/todo/create", (schema: any, request) => {
-      //   let attrs = JSON.parse(request.requestBody);
-      //   return schema.todos.create(attrs);
-      // });
     },
-  }); 
+  });
 
-    
   return server;
-  
 }

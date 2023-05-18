@@ -8,10 +8,17 @@ type TodosContextObj = {
   users: [];
   getTodos: () => void;
   getUsers: () => void;
-  setInitialState: (name: string, user: string, isComplete: boolean) => void;
   addTodo: (name: string, user: string, isComplete: boolean) => void;
   removeTodo: (id: string) => void;
-  editTodo: (id: string, name: string, user: string, isComplete: boolean) => void;
+  editTodo: (
+    id: string,
+    name: string,
+    user: string,
+    isComplete: boolean
+  ) => void;
+  getByUser: (user: string) => void;
+  getByTasks: (tasks: string) => void;
+  getCompleted: () => void;
 };
 
 // CREATE CONTEXT
@@ -20,12 +27,13 @@ export const TodosContext = React.createContext<TodosContextObj>({
   users: [],
   getTodos: () => {},
   getUsers: () => {},
-  setInitialState: () => {},
   addTodo: () => {},
   removeTodo: (id: string) => {},
   editTodo: () => {},
+  getByUser: () => {},
+  getByTasks: () => {},
+  getCompleted: () => {},
 });
-
 
 // DEFINE PROVIDER
 const TodosContextProvider: React.FC<{ children: React.ReactNode }> = (
@@ -34,17 +42,23 @@ const TodosContextProvider: React.FC<{ children: React.ReactNode }> = (
   const [todos, setTodos] = useState<Todo[]>([]);
   const [users, setUsers] = useState<[]>([]);
 
-
-   //// GET ALL THE TODOS FROM THE API AND SET INITIAL STATE
-   async function getTodos() {
+  //// GET ALL THE TODOS FROM THE API AND SET INITIAL STATE
+  async function getTodos() {
+    setTodos([]);
     const req = await axios.get("api/todos");
     const todos = req.data.todos;
+
     for (let index = 0; index < todos.length; index++) {
-      setInitialState(
+      const newTodo = new Todo(
         todos[index].name,
         todos[index].user,
-        todos[index].isComplete
+        todos[index].isComplete,
+        todos[index].id
       );
+
+      setTodos((prevTodos) => {
+        return prevTodos.concat(newTodo);
+      });
     }
   }
 
@@ -57,12 +71,18 @@ const TodosContextProvider: React.FC<{ children: React.ReactNode }> = (
     }
   }
 
-  // SET INITIAL STATE
-  const setInitialState = (name: string, user: string, isComplete: boolean) => {
-    const newTodo = new Todo(name, user, isComplete);
-    setTodos((prevTodos) => {
-      return prevTodos.concat(newTodo);
-    });
+  // FILTER DATA LOGIC
+  // get by sepcific user
+  const getByUser = (user: string) => {
+    return todos.filter((todo) => todo.user === user);
+  };
+  // get by sepcific task
+  const getByTasks = (tasks: string) => {
+    return todos.filter((todo) => todo.id.includes(tasks));
+  };
+  // get all completed
+  const getCompleted = () => {
+    return todos.filter((todo) => todo.isComplete === true);
   };
 
   // ADD TODOS
@@ -74,16 +94,21 @@ const TodosContextProvider: React.FC<{ children: React.ReactNode }> = (
   };
 
 
+
   //EDIT TODO
-  const editTodoHandler = (id: string, name: string, user: string, isComplete: boolean) => {
+  const editTodoHandler = (
+    id: string,
+    name: string,
+    user: string,
+    isComplete: boolean
+  ) => {
     const editedTodo = new Todo(name, user, isComplete, id);
     setTodos((prevTodos) => {
       return prevTodos.map((todo) => {
         if (todo.id === id) {
           return editedTodo;
-          console.log(editedTodo);
         } else {
-          return todo
+          return todo;
         }
       });
     });
@@ -96,18 +121,18 @@ const TodosContextProvider: React.FC<{ children: React.ReactNode }> = (
     });
   };
 
-  
- 
   // VALUE TO GIVE TO PROVIDER
   const contextValue: TodosContextObj = {
     items: todos,
     users: users,
     getTodos,
     getUsers,
-    setInitialState,
     addTodo: addTodoHandler,
     removeTodo: removeTodoHandler,
     editTodo: editTodoHandler,
+    getByUser,
+    getByTasks,
+    getCompleted,
   };
 
   return (

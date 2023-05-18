@@ -34,12 +34,12 @@ const TodoItem: React.FC<{
             />
           )}
         </div>
-       
+
         <p>
           <b>Task:</b> {props.name}
         </p>
         <p>
-          <b>Complete:</b> {props.isComplete.toString()}
+          <b>Complete:</b> {props.isComplete?.toString()}
         </p>
         <div className={classes.menu}>
           <IconButton aria-label="edit task" onClick={() => handleModal(true)}>

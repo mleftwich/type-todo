@@ -81,8 +81,10 @@ const Form: React.FC<Props> = ({
 
   // handle submit - edit / add
   const submitHandler = (e: React.FormEvent) => {
+    // check if editing
     if (edit === true) {
       e.preventDefault();
+      handleModal(false)
       let enteredText = todoInputRef.current!.value;
       if (enteredText!.trim().length === 0) {
         return alert("Please enter a task");
@@ -92,6 +94,7 @@ const Form: React.FC<Props> = ({
       setTimeout(() => {
         setSuccess(false);
       }, 3000);
+      // if not editing add task
     } else {
       e.preventDefault();
       let enteredText = todoInputRef.current!.value;
@@ -108,6 +111,7 @@ const Form: React.FC<Props> = ({
 
   return (
     <>
+    {/* START OF FORM */}
       <div className={classes.form}>
         <form onSubmit={submitHandler}>
           <div>
@@ -116,7 +120,7 @@ const Form: React.FC<Props> = ({
                 <CloseIcon color="primary" />
               </IconButton>
             )}
-
+            {/* USER SELECT FIELD */}
             <Select
               options={userArray}
               placeholder="- user -"
@@ -130,14 +134,22 @@ const Form: React.FC<Props> = ({
                 }),
               }}
             />
-
+            {/* IS COMPLETE STATUS FIELD */}
             <Select
               options={options}
               placeholder="- status -"
               onChange={handleStatusChange}
+              styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  border: 0,
+                  boxShadow: "none",
+                  margin: '1px'
+                }),
+              }}
             />
           </div>
-
+              {/* TASK NAME FIELD */}
           <TextField
             id="task"
             name="task"
@@ -148,12 +160,11 @@ const Form: React.FC<Props> = ({
             variant="filled"
             placeholder={taskname ? taskname : "- add task here -"}
             inputRef={todoInputRef}
-            inputProps={{ className: classes.textfield }}
           >
             {taskname}
           </TextField>
-
-          <div className={classes.button}>
+              {/* SUBMIT BUTTON */}
+          <div>
             <Button
               type="submit"
               variant="contained"

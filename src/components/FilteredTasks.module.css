@@ -1,0 +1,31 @@
+.labels {
+  text-align: center;
+  color: #ffca28;
+  font-family: monospace;
+  font-size: large;
+  text-shadow: black 5px 5px 3px;
+}
+
+.filtered {
+  display: flex;
+  justify-content: center;
+  min-width: 100%
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  background-color: rgba(237, 237, 237, 0.1);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.search {
+  text-align: center;
+  color: #aaaaaa;
+  font-family: monospace;
+  font-size: large;
+  text-shadow: black 5px 5px 3px;
+}
+
