@@ -52,17 +52,20 @@ const FilteredTasks: React.FC<{
   ) => {
     setType(newType);
     setResult(null);
+    setModded(false)
   };
 
   // user state handler
   const [newUser, setNewUser] = useState();
   const handleSelectUser = (selectedUser: any) => {
+    setModded(false)
     setNewUser(selectedUser.value);
   };
 
   // task state handler
   const [newTask, setNewTask] = useState();
   const handleSelectTask = (selectedTask: any) => {
+    setModded(false)
     setNewTask(selectedTask.value);
   };
 
@@ -81,6 +84,12 @@ const FilteredTasks: React.FC<{
       setResult(results!);
     }
   };
+
+  // modified state handler
+  const [modded, setModded] = useState(false);
+  function handleMod() {
+    setModded(true);
+   }
   return (
     <>
       {/* BUTTON GROUP FOR FILTER */}
@@ -118,23 +127,50 @@ const FilteredTasks: React.FC<{
       {/* SELECTABLE FIELDS */}
       <div>
         {type === "user" && (
-          <Select options={userArray} onChange={handleSelectUser} styles={{control: (baseStyles, state) => ({...baseStyles, border: 0, boxShadow: 'none'})}}/>
+          <Select
+            options={userArray}
+            onChange={handleSelectUser}
+            styles={{
+              control: (baseStyles, state) => ({
+                ...baseStyles,
+                border: 0,
+                boxShadow: "none",
+              }),
+            }}
+          />
         )}
         {type === "task" && (
-          <Select options={tasksArray} onChange={handleSelectTask} styles={{control: (baseStyles, state) => ({...baseStyles, border: 0, boxShadow: 'none'})}}/>
+          <Select
+            options={tasksArray}
+            onChange={handleSelectTask}
+            styles={{
+              control: (baseStyles, state) => ({
+                ...baseStyles,
+                border: 0,
+                boxShadow: "none",
+              }),
+            }}
+          />
         )}
+        {/* BUTTON  */}
       </div>
       <div className={classes.buttons}>
         <Button variant="contained" fullWidth onClick={handleSearch}>
           <b>search</b>
         </Button>
       </div>
-      <div className={classes.filtered}>
-        {result ? (
-          <TodoList items={result!} />
-        ) : (
-          <p className={classes.search}>^ choose parameters</p>
-        )}
+      {modded && (
+        <p className={classes.modded}>snapshot - tasks have been modified</p>
+      )}
+      {/* RESULTS */}
+      <div className={classes.filtered} onClick={handleMod}>
+        <div className={classes.flex}>
+          {result ? (
+            <TodoList items={result!} />
+          ) : (
+            <p className={classes.search}>^ choose parameters</p>
+          )}
+        </div>
       </div>
     </>
   );

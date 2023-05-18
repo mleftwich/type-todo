@@ -84,7 +84,7 @@ const Form: React.FC<Props> = ({
     // check if editing
     if (edit === true) {
       e.preventDefault();
-      handleModal(false)
+      handleModal(false);
       let enteredText = todoInputRef.current!.value;
       if (enteredText!.trim().length === 0) {
         return alert("Please enter a task");
@@ -111,7 +111,7 @@ const Form: React.FC<Props> = ({
 
   return (
     <>
-    {/* START OF FORM */}
+      {/* START OF FORM */}
       <div className={classes.form}>
         <form onSubmit={submitHandler}>
           <div>
@@ -144,12 +144,12 @@ const Form: React.FC<Props> = ({
                   ...baseStyles,
                   border: 0,
                   boxShadow: "none",
-                  margin: '1px'
+                  margin: "1px",
                 }),
               }}
             />
           </div>
-              {/* TASK NAME FIELD */}
+          {/* TASK NAME FIELD */}
           <TextField
             id="task"
             name="task"
@@ -163,7 +163,7 @@ const Form: React.FC<Props> = ({
           >
             {taskname}
           </TextField>
-              {/* SUBMIT BUTTON */}
+          {/* SUBMIT BUTTON */}
           <div>
             <Button
               type="submit"

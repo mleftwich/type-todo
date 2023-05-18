@@ -9,6 +9,7 @@ body {
   text-align: center;
   font-weight: regular;
   font-size: 40pt;
+
 }
 
 .titleBox {
@@ -19,7 +20,7 @@ body {
   width: 50%;
   margin: auto;
   margin-top: 20pt;
-
+  margin-bottom: 10pt;
 }
 
 .alltodos {
@@ -36,7 +37,7 @@ body {
 .list {
   border-right: 1px solid rgb(109, 109, 109);
   border-bottom: 1px solid rgb(109, 109, 109);
-  border-radius: 5px;
+
   display: inline;
   padding: 5px;
   width: 45%;
@@ -63,3 +64,4 @@ body {
   justify-content: center;
   padding: 1.8rem;
 }
+

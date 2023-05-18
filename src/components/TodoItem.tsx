@@ -16,12 +16,14 @@ const TodoItem: React.FC<{
   const todosCtx = useContext(TodosContext);
   const [toEdit, setToEdit] = React.useState(false);
 
+  // MODAL HANDLER
   function handleModal(e: boolean) {
     setToEdit(e);
   }
 
   return (
     <>
+      {/* MODAL */}
       <div key={props.id} className={classes.item}>
         <div className={classes.modal}>
           {toEdit && (
@@ -35,22 +37,28 @@ const TodoItem: React.FC<{
           )}
         </div>
 
-        <p>
-          <b>Task:</b> {props.name}
-        </p>
-        <p>
-          <b>Complete:</b> {props.isComplete?.toString()}
-        </p>
-        <div className={classes.menu}>
-          <IconButton aria-label="edit task" onClick={() => handleModal(true)}>
-            <EditNoteIcon />
-          </IconButton>
-          <IconButton
-            aria-label="delete task"
-            onClick={() => todosCtx.removeTodo(props.id)}
-          >
-            <DeleteForeverIcon />
-          </IconButton>
+        {/* ITEMS */}
+        <div className={classes.min}>
+          <p>
+            <b>Task:</b> {props.name}
+          </p>
+          <p>
+            <b>Complete:</b> {props.isComplete?.toString()}
+          </p>
+          <div className={classes.menu}>
+            <IconButton
+              aria-label="edit task"
+              onClick={() => handleModal(true)}
+            >
+              <EditNoteIcon />
+            </IconButton>
+            <IconButton
+              aria-label="delete task"
+              onClick={() => todosCtx.removeTodo(props.id)}
+            >
+              <DeleteForeverIcon />
+            </IconButton>
+          </div>
         </div>
       </div>
     </>

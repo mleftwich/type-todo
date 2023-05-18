@@ -93,8 +93,6 @@ const TodosContextProvider: React.FC<{ children: React.ReactNode }> = (
     });
   };
 
-
-
   //EDIT TODO
   const editTodoHandler = (
     id: string,

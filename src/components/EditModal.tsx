@@ -3,12 +3,13 @@ import ReactDOM from "react-dom";
 import classes from "./EditModal.module.css";
 import Form from "./Form";
 
+// MODAL BACKDROP
 const Backdrop = (props: any) => {
   return (
     <div className={classes.backdrop} onClick={() => props.handleModal()} />
   );
 };
-
+// MODAL POP U[]
 const ModalOverlay = (props: any) => {
   return (
     <>
@@ -26,6 +27,8 @@ const ModalOverlay = (props: any) => {
     </>
   );
 };
+
+// MODAL CONTENT
 const EditModal: React.FC<{
   id?: string;
   taskname?: string;

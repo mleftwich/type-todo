@@ -4,12 +4,14 @@ import Todo from "../models/todo";
 import TodoItem from "./TodoItem";
 import classes from "./Todolist.module.css";
 const TodoList: React.FC<{ items: Todo[] }> = (props) => {
-  const todoArray = props.items;
 
-  return (
+
+
+const todoArray = props.items;
+return (
     <>
       <div>
-        <h5 className={classes.labels}><TaskIcon color='primary'/></h5>
+        <h5 className={classes.labels}>{todoArray.length === 0 ? 'such empty' :<TaskIcon color='primary'/>}</h5>
         {todoArray.map((item, index) => (
           <TodoItem
             key={index}

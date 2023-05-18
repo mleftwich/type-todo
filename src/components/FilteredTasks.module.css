@@ -7,9 +7,13 @@
 }
 
 .filtered {
-  display: flex;
   justify-content: center;
-  min-width: 100%
+  min-width: 100%;
+}
+
+.filteredModded {
+  justify-content: center;
+  min-width: 100%;
 }
 
 .buttons {
@@ -29,3 +33,10 @@
   text-shadow: black 5px 5px 3px;
 }
 
+.modded {
+  text-align: center;
+  color: #28ffd0;
+  font-family: monospace;
+  font-size: small;
+  text-shadow: black 5px 5px 3px;
+}
